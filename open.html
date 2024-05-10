@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi URL open</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    #urls {
+      min-height: 200px;
+    }
+
+    textarea.form-control {
+      resize: none;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4">Multi URL open</h1>
+    <form id="urlForm">
+      <div class="mb-3">
+        <label for="urls" class="form-label">URLs:</label>
+        <textarea id="urls" name="urls" class="form-control" rows="6" cols="50"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="openURLs()">Open URLs</button>
+    </form>
+  </div>
+
+  <script>
+    function openURLs() {
+      var urlsTextArea = document.getElementById('urls');
+      var urls = urlsTextArea.value.trim().split('\n');
+
+      // Open URLs sequentially
+      openNextURL(urls, 0);
+    }
+
+    function openNextURL(urls, index) {
+      if (index < urls.length) {
+        // Open the next URL
+        var openedWindow = window.open(urls[index].trim(), '_blank');
+        
+        // Open the next URL after a short delay
+        setTimeout(function() {
+          openNextURL(urls, index + 1);
+        }, 1000); // Adjust the delay as needed
+      }
+    }
+  </script>
+</body>
+</html>
