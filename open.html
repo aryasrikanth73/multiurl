@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,12 +54,12 @@
 
   <script>
     function openURLs() {
-      var urlsTextArea = document.getElementById('urls');
-      var urls = urlsTextArea.value.trim().split('\n');
+  var urlsTextArea = document.getElementById('urls');
+  var urls = urlsTextArea.value.trim().split('\n').filter(url => url.trim() !== '' && url.trim() !== window.location.href);
 
-      // Open URLs sequentially
-      openNextURL(urls, 0);
-    }
+  // Open URLs sequentially
+  openNextURL(urls, 0);
+}
 
     function openNextURL(urls, index) {
       if (index < urls.length) {
